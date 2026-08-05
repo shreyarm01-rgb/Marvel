@@ -205,3 +205,23 @@ body {
 .mcv-scrollrow::-webkit-scrollbar-track { background: var(--paper-2); border: 2px solid var(--ink); }
 .mcv-scrollrow::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper-2); }
 .mcv-scrollrow::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+.mcv-search-dropdown {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink) var(--paper-2);
+}
+.mcv-search-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+.mcv-search-dropdown::-webkit-scrollbar-track {
+  background: var(--paper-2);
+  border-left: 2px solid var(--ink);
+}
+.mcv-search-dropdown::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border: 1.5px solid var(--paper-2);
+}
+.mcv-search-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--red);
+}
+

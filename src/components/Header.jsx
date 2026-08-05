@@ -1,7 +1,152 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import { PHASES, T } from "../data/marvelData.js";
+import { Menu, X, Search } from "lucide-react";
+import { PHASES, T, TYPE_LABEL } from "../data/marvelData.js";
+
+function NavSearch({ onOpen, closeMobileMenu }) {
+  const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      setQuery("");
+      setIsOpen(false);
+    }
+  };
+
+  const filtered = query.trim()
+    ? T.filter(
+        (item) =>
+          item.title.toLowerCase().includes(query.toLowerCase()) ||
+          item.blurb.toLowerCase().includes(query.toLowerCase()) ||
+          (item.type && item.type.toLowerCase().includes(query.toLowerCase()))
+      )
+    : [];
+
+  const handleSelectItem = (item) => {
+    setQuery("");
+    setIsOpen(false);
+    if (closeMobileMenu) closeMobileMenu();
+    if (onOpen) onOpen(item);
+    else navigate(`/article/${item.id}`);
+  };
+
+  return (
+    <div ref={searchRef} className="relative w-full md:w-[360px]">
+      <div className="relative flex items-center">
+        <Search
+          size={16}
+          className="absolute left-2.5 text-[var(--ink)] pointer-events-none z-10 opacity-70"
+        />
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setIsOpen(true);
+          }}
+          onFocus={() => setIsOpen(true)}
+          onKeyDown={handleKeyDown}
+          placeholder="Search Marvel titles..."
+          className="w-full bg-[var(--paper)] text-[var(--ink)] placeholder-[rgba(24,19,14,0.55)] font-comic text-[14px] font-bold pl-8 pr-7 py-1.5 border-[2px] border-[var(--paper)] focus:outline-none focus:border-[var(--yellow)] transition-all"
+        />
+        {query && (
+          <button
+            onClick={() => {
+              setQuery("");
+              setIsOpen(false);
+            }}
+            aria-label="Clear search"
+            className="absolute right-2 text-[var(--ink)] opacity-70 hover:opacity-100 cursor-pointer p-0.5 bg-transparent border-none"
+          >
+            <X size={15} />
+          </button>
+        )}
+      </div>
+
+      {isOpen && query.trim().length > 0 && (
+        <div className="mcv-search-dropdown absolute top-[calc(100%+6px)] left-0 right-0 w-full bg-[var(--paper)] border-[3px] border-[var(--ink)] shadow-[6px_6px_0_var(--ink)] z-100 max-h-[380px] overflow-y-auto p-2">
+          <div className="px-2 py-1 border-b border-[rgba(24,19,14,0.15)] mb-1 flex items-center justify-between">
+            <span className="font-bangers text-[13px] text-[var(--red)] tracking-wider">
+              SEARCH RESULTS ({filtered.length})
+            </span>
+            <span className="text-[11px] font-comic opacity-60">ESC to close</span>
+          </div>
+
+          {filtered.length > 0 ? (
+            <div className="flex flex-col gap-1">
+              {filtered.map((item) => {
+                const phaseObj = PHASES.find((p) => p.id === item.phase);
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleSelectItem(item)}
+                    className="flex items-center gap-3 w-full p-2 text-left bg-transparent hover:bg-[rgba(24,19,14,0.08)] border-b border-dashed border-[rgba(24,19,14,0.15)] last:border-none cursor-pointer transition-colors"
+                  >
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-10 h-12 object-cover border border-[var(--ink)] shrink-0 shadow-[1px_1px_0_var(--ink)]"
+                      />
+                    ) : (
+                      <div
+                        className="w-10 h-12 shrink-0 border border-[var(--ink)] flex items-center justify-center font-bangers text-[12px] text-[var(--paper)] shadow-[1px_1px_0_var(--ink)]"
+                        style={{ background: phaseObj?.color || "var(--ink)" }}
+                      >
+                        MCU
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <p className="font-comic font-bold text-[14px] text-[var(--ink)] truncate m-0 leading-tight">
+                          {item.title}
+                        </p>
+                        <span
+                          className="font-bangers text-[10px] px-1.5 py-0.5 text-[var(--paper)] shrink-0"
+                          style={{ background: phaseObj?.color || "var(--ink)" }}
+                        >
+                          {TYPE_LABEL[item.type] || item.type}
+                        </span>
+                      </div>
+                      <p className="font-kalam text-[12px] text-[rgba(24,19,14,0.7)] truncate m-0 mt-0.5">
+                        {item.blurb}
+                      </p>
+                      <div className="flex items-center gap-2 mt-0.5 text-[11px] font-bold opacity-60">
+                        <span>{phaseObj ? phaseObj.name : `Phase ${item.phase}`}</span>
+                        <span>•</span>
+                        <span>{item.date}</span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="p-4 text-center">
+              <p className="font-bangers text-[16px] text-[var(--ink)] m-0">NO HEROES OR SAGAS FOUND</p>
+              <p className="font-kalam text-[13px] opacity-70 m-0 mt-1">
+                Try searching for "Iron Man", "Loki", "Avengers", or "Phase 3"
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function BlogMegaMenu({ onOpen, variant = "desktop", closeMenu }) {
   const [expanded, setExpanded] = useState(1);
@@ -110,7 +255,7 @@ export function Header({ onOpen }) {
 
   return (
     <header className="bg-[var(--ink)] border-b-[4px] border-[var(--ink)] sticky top-0 z-50 w-full">
-      <div className="w-full max-w-full px-8 py-3 flex items-center justify-between">
+      <div className="w-full max-w-full px-8 py-3 flex items-center justify-between gap-4">
         <div className="flex items-center gap-6">
           <button
             onClick={() => { navigate("/"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
@@ -147,6 +292,10 @@ export function Header({ onOpen }) {
           </div>
         </div>
 
+        <div className="hidden md:block">
+          <NavSearch onOpen={onOpen} />
+        </div>
+
         <button
           className="flex md:hidden bg-transparent border-none text-[var(--paper)] cursor-pointer p-1"
           onClick={() => setOpen((o) => !o)}
@@ -158,6 +307,9 @@ export function Header({ onOpen }) {
 
       {open && (
         <div className="block md:hidden px-6 pt-2 pb-4 border-t border-[rgba(235,224,196,0.2)]">
+          <div className="mb-3">
+            <NavSearch onOpen={onOpen} closeMobileMenu={() => setOpen(false)} />
+          </div>
           <div className="flex flex-wrap gap-2.5 mb-1.5">
             <button
               className="mcv-navlink"
@@ -173,3 +325,4 @@ export function Header({ onOpen }) {
     </header>
   );
 }
+

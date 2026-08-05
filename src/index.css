@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Fredoka:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Kalam:wght@400;700&family=Oswald:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #EBE0C4;
+  --color-paper-2: #E1D3AC;
+  --color-ink: #18130E;
+  --color-marvel-red: #C4232B;
+  --color-marvel-red-dark: #7A1519;
+  --color-marvel-blue: #1E4A8C;
+  --color-marvel-yellow: #E8B62F;
+  --color-marvel-purple: #6B2FA0;
+}
+
+:root {
+  --paper: #EBE0C4;
+  --paper-2: #E1D3AC;
+  --ink: #18130E;
+  --red: #C4232B;
+  --red-dark: #7A1519;
+  --blue: #1E4A8C;
+  --yellow: #E8B62F;
+  --purple: #6B2FA0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.mcv-root {
+  font-family: 'Comic Neue', sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(circle, rgba(24,19,14,0.10) 1px, transparent 1.2px);
+  background-size: 10px 10px;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.font-bangers, .mcv-display {
+  font-family: 'Bangers', cursive !important;
+  letter-spacing: 0.03em;
+}
+
+.font-comic {
+  font-family: 'Comic Neue', sans-serif !important;
+}
+
+.font-kalam, .mcv-hand {
+  font-family: 'Kalam', cursive !important;
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', sans-serif !important;
+}
+
+.font-oswald {
+  font-family: 'Oswald', sans-serif !important;
+}
+
+.font-bitter {
+  font-family: 'Bitter', serif !important;
+}
+
+.mcv-panel {
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  background: var(--paper);
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+}
+.mcv-panel::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(24,19,14,0.14) 1.1px, transparent 1.3px);
+  background-size: 7px 7px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mcv-btn {
+  font-family: 'Bangers', cursive !important;
+  letter-spacing: 0.04em;
+  border: 3px solid var(--ink) !important;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 10px 22px;
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-color 0.2s ease;
+  font-size: 18px;
+}
+.mcv-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 7px 7px 0 var(--ink); }
+.mcv-btn:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 var(--ink); }
+
+.mcv-navlink {
+  font-family: 'Bangers', cursive !important;
+  letter-spacing: 0.03em;
+  font-size: 16px;
+  color: var(--paper);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  position: relative;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.mcv-navlink:hover { color: var(--yellow); transform: translateY(-2px); }
+
+.mcv-phase-tab {
+  font-family: 'Bangers', cursive !important;
+  letter-spacing: 0.04em;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2.5px solid var(--ink) !important;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+}
+.mcv-phase-tab:hover {
+  background: var(--phase-tab-color, var(--yellow)) !important;
+  color: var(--paper) !important;
+  opacity: 0.95;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.mcv-phase-tab:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+  opacity: 1;
+}
+
+.mcv-card {
+  cursor: pointer;
+  border: 3px solid var(--ink) !important;
+  box-shadow: 6px 6px 0 var(--ink) !important;
+  background: var(--paper) !important;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.mcv-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 12px 12px 0 var(--ink), 0 14px 28px rgba(0, 0, 0, 0.25) !important;
+  border-color: var(--ink) !important;
+  z-index: 10;
+}
+
+.mcv-card:active {
+  transform: translateY(-2px) scale(0.99);
+  box-shadow: 4px 4px 0 var(--ink) !important;
+}
+
+.mcv-card-header-inner {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.mcv-card:hover .mcv-card-header-inner {
+  transform: scale(1.08);
+}
+
+.mcv-hero-row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 26px;
+  margin-bottom: 30px;
+}
+@media (max-width: 640px) {
+  .mcv-hero-row { grid-template-columns: 1fr; }
+}
+
+.mcv-dropcap::first-letter {
+  font-family: 'Bangers', cursive !important;
+  font-size: 54px;
+  float: left;
+  line-height: 0.8;
+  padding: 6px 8px 0 0;
+  color: var(--red);
+}
+
+.mcv-scrollrow::-webkit-scrollbar { height: 10px; }
+.mcv-scrollrow::-webkit-scrollbar-track { background: var(--paper-2); border: 2px solid var(--ink); }
+.mcv-scrollrow::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper-2); }
+.mcv-scrollrow::-webkit-scrollbar-thumb:hover { background: var(--red); }

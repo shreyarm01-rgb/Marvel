@@ -74,7 +74,7 @@ export const T = [
   ["Wonder Man", "series", "Jan 2026", 6, "Hollywood stunt work meets super power."],
   ["Daredevil: Born Again", "series", "Mar 2026", 6, "Season two, the war for Hell's Kitchen."],
   ["X-Men '97", "series", "Jul 2026", 6, "Season two — now airing.", false, "airing"],
-  ["Spider-Man: Brand New Day", "film", "Jul 31, 2026", 6, "Peter's next chapter begins.", false, "upcoming"],
+  ["Spider-Man: Brand New Day", "film", "Jul 31, 2026", 6, "Peter's next chapter begins.", false, "upcoming", "/images/Phase 5/Brand New Day.jpg"],
   ["VisionQuest", "series", "Oct 14, 2026", 6, "Vision, rebuilding a self.", false, "upcoming"],
   ["Your Friendly Neighborhood Spider-Man", "series", "Late 2026", 6, "Season two swings in.", false, "upcoming"],
   ["The Punisher: One Last Kill", "special", "2026", 6, "Frank Castle, one more job.", false, "upcoming"],

@@ -14,7 +14,7 @@ function Hero({ goPhase }) {
       }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(235,224,196,0.9)_0%,rgba(196,35,43,0.15)_42%,transparent_60%)]" />
-      
+
       <div className="w-full max-w-full mx-auto relative z-10">
         <div className="text-center mb-9">
           <h1 className="font-bangers text-[clamp(44px,8.5vw,96px)] text-[var(--paper)] leading-none m-0 [text-shadow:6px_6px_0_var(--ink)] [-webkit-text-stroke:3px_var(--ink)]">
@@ -87,7 +87,7 @@ function PhaseRow({ phase, items, onOpen, sectionRef, isFirst }) {
   return (
     <div
       ref={sectionRef}
-      className={`mb-13 scroll-mt-22 relative ${isFirst ? "mt-[44px]" : "mt-[20px]"}`}
+      className={`mb-13 scroll-mt-22 relative ${isFirst ? "mt-[56px]" : "mt-[20px]"}`}
     >
       <div className="flex items-center gap-[16px] px-[32px] mb-[16px] flex-wrap">
         <div className="flex items-center gap-[12px]">

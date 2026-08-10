@@ -218,6 +218,7 @@ export function GlobalStyle() {
       .mcv-scrollrow {
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
+        scrollbar-color: var(--ink) var(--paper-2);
         scroll-snap-type: x mandatory;
         scroll-padding-left: 1rem;
       }
@@ -234,10 +235,10 @@ export function GlobalStyle() {
           margin-left: 8px;
         }
       }
-      .mcv-scrollrow::-webkit-scrollbar { height: 8px; }
-      .mcv-scrollrow::-webkit-scrollbar-track { background: var(--paper-2); border: 2px solid var(--ink); }
-      .mcv-scrollrow::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper-2); }
-      .mcv-scrollrow::-webkit-scrollbar-thumb:hover { background: var(--red); }
+      ::-webkit-scrollbar { height: 8px; width: 8px; }
+      ::-webkit-scrollbar-track { background: var(--paper-2); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+      ::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper-2); }
+      ::-webkit-scrollbar-thumb:hover { background: var(--red); }
 
       @media (max-width: 640px) {
         .mcv-btn {

@@ -54,14 +54,14 @@ export function DoomsdayModal({ onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-100 flex items-center justify-center p-2 sm:p-4 bg-[rgba(13,18,16,0.88)] backdrop-blur-md animate-fadeIn overflow-y-auto"
+      className="fixed inset-0 z-100 flex items-center justify-center p-2 sm:p-4 bg-[rgba(13,18,16,0.88)] backdrop-blur-md animate-fadeIn overflow-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="doomsday-modal-title"
     >
       <div
-        className="relative w-full max-w-[540px] max-h-[92vh] sm:max-h-[96vh] overflow-y-auto rounded-lg border-[3px] sm:border-[4px] border-[#0d1210] shadow-[6px_6px_0_#0d1210] sm:shadow-[8px_8px_0_#0d1210] bg-[#10732A] text-[#f4ecd8] font-fredoka flex flex-col items-center justify-between pt-3 px-3 sm:pt-5 sm:px-5 md:pt-6 md:px-6 pb-0 select-none my-auto"
+        className="relative w-full max-w-[540px] max-h-[92vh] sm:max-h-[96vh] overflow-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden rounded-lg border-[3px] sm:border-[4px] border-[#0d1210] shadow-[6px_6px_0_#0d1210] sm:shadow-[8px_8px_0_#0d1210] bg-[#10732A] text-[#f4ecd8] font-fredoka flex flex-col items-center justify-between pt-3 px-3 sm:pt-5 sm:px-5 md:pt-6 md:px-6 pb-0 select-none my-auto"
         style={{
           background:
             "radial-gradient(120% 95% at 50% 15%, #147c30 0%, #10732A 55%, #084017 100%)",

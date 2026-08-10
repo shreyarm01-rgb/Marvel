@@ -155,7 +155,7 @@ export function ArticlePage({ onOpen }) {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="absolute inset-0 w-full h-full object-fill scale-[1.15]"
+                    className="absolute inset-0 w-full h-full object-cover object-top block z-10"
                   />
                 ) : (
                   <div className="font-bangers absolute inset-0 flex items-center justify-center text-[var(--yellow)] text-[22px] p-5 text-center">

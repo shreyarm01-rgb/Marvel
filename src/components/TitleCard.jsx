@@ -29,7 +29,7 @@ export function TitleCard({ item, onOpen, isGrid = false }) {
             <img
               src={item.image}
               alt={item.title}
-              className="absolute inset-0 w-full h-full object-cover object-top block z-10"
+              className="absolute inset-0 w-full h-full object-fill block z-10 scale-[1.08]"
             />
           )}
           {(upcoming || airing) && (

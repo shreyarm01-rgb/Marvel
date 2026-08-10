@@ -214,11 +214,45 @@ export function GlobalStyle() {
           87% 0%, 93% 3%, 100% 0%, 100% 100%, 0% 100%);
       }
 
-      /* Custom scrollbars */
-      .mcv-scrollrow::-webkit-scrollbar { height: 10px; }
+      /* Custom scrollbars and touch scrolling */
+      .mcv-scrollrow {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 1rem;
+      }
+      @media (min-width: 640px) {
+        .mcv-scrollrow {
+          scroll-padding-left: 2rem;
+        }
+      }
+      .mcv-scrollrow > :first-child {
+        margin-left: 4px;
+      }
+      @media (min-width: 640px) {
+        .mcv-scrollrow > :first-child {
+          margin-left: 8px;
+        }
+      }
+      .mcv-scrollrow::-webkit-scrollbar { height: 8px; }
       .mcv-scrollrow::-webkit-scrollbar-track { background: var(--paper-2); border: 2px solid var(--ink); }
       .mcv-scrollrow::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper-2); }
       .mcv-scrollrow::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+      @media (max-width: 640px) {
+        .mcv-btn {
+          padding: 8px 16px;
+          font-size: 15px;
+        }
+        .mcv-phase-tab {
+          padding: 6px 12px;
+          font-size: 14px;
+        }
+        .mcv-dropcap::first-letter {
+          font-size: 42px;
+          padding: 4px 6px 0 0;
+        }
+      }
     `}</style>
   );
 }

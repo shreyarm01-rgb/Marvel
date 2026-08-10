@@ -9,27 +9,37 @@ function RelatedCarousel({ phase, onOpen }) {
 
   const scroll = (dir) => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: dir * 320, behavior: "smooth" });
+      const container = scrollRef.current;
+      const cards = container.querySelectorAll('.mcv-card');
+      if (cards.length > 0) {
+        let step = cards[0].offsetWidth + 40;
+        if (cards.length > 1) {
+          step = cards[1].offsetLeft - cards[0].offsetLeft;
+        }
+        container.scrollBy({ left: dir * step, behavior: "smooth" });
+      } else {
+        container.scrollBy({ left: dir * 240, behavior: "smooth" });
+      }
     }
   };
 
   return (
-    <div className="mt-11 w-full">
-      <div className="flex items-center justify-between border-b-[3px] border-[var(--ink)] pb-2 mb-4">
-        <div className="font-oswald font-bold text-[20px] tracking-widest uppercase">
+    <div className="mt-8 sm:mt-11 w-full">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-[3px] border-[var(--ink)] pb-2 mb-3 sm:mb-4 gap-2">
+        <div className="font-oswald font-bold text-[16px] sm:text-[20px] tracking-widest uppercase">
           RELATED DISPATCHES IN {phase.name.toUpperCase()} ({items.length} ISSUES)
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 self-end sm:self-auto">
           <button
             onClick={() => scroll(-1)}
-            className="mcv-btn px-3 py-1 text-[14px] bg-[var(--paper)] text-[var(--ink)]"
+            className="mcv-btn px-2.5 py-0.5 sm:px-3 sm:py-1 text-[13px] sm:text-[14px] bg-[var(--paper)] text-[var(--ink)]"
             aria-label="Scroll left"
           >
             ◄
           </button>
           <button
             onClick={() => scroll(1)}
-            className="mcv-btn px-3 py-1 text-[14px] bg-[var(--paper)] text-[var(--ink)]"
+            className="mcv-btn px-2.5 py-0.5 sm:px-3 sm:py-1 text-[13px] sm:text-[14px] bg-[var(--paper)] text-[var(--ink)]"
             aria-label="Scroll right"
           >
             ►
@@ -39,7 +49,7 @@ function RelatedCarousel({ phase, onOpen }) {
 
       <div
         ref={scrollRef}
-        className="mcv-scrollrow flex gap-6 overflow-x-auto py-3 px-1.5 pb-7 w-full max-w-full relative scroll-smooth"
+        className="mcv-scrollrow snap-x snap-mandatory flex gap-4 sm:gap-6 overflow-x-auto py-2 sm:py-3 px-1.5 pb-5 sm:pb-7 w-full max-w-full relative scroll-smooth"
       >
         {items.map((item, idx) => (
           <React.Fragment key={item.id}>
@@ -77,24 +87,24 @@ export function ArticlePage({ onOpen }) {
   };
 
   return (
-    <main className="w-full max-w-full py-4 px-6 pb-16">
+    <main className="w-full max-w-full py-4 px-3 sm:px-6 pb-16">
       <div className="w-full max-w-[1180px] mx-auto">
         {/* MASTHEAD */}
-        <div className="border-t-[6px] border-b-[3px] border-[var(--ink)] py-4 pb-3 mb-5 w-full">
-          <div className="flex items-center justify-center relative gap-5">
+        <div className="border-t-[4px] sm:border-t-[6px] border-b-[3px] border-[var(--ink)] py-3 sm:py-4 pb-3 mb-5 w-full">
+          <div className="flex flex-col md:flex-row items-center justify-center relative gap-3 sm:gap-5">
             <div
-              className="absolute left-0 shrink-0 w-[86px] h-[86px] rounded-full border-[3px] border-[var(--ink)] text-[var(--paper)] flex flex-col items-center justify-center font-bangers leading-none -rotate-[8deg] shadow-[3px_3px_0_var(--ink)]"
+              className="static md:absolute md:left-0 shrink-0 w-[64px] h-[64px] sm:w-[86px] sm:h-[86px] rounded-full border-[3px] border-[var(--ink)] text-[var(--paper)] flex flex-col items-center justify-center font-bangers leading-none -rotate-[8deg] shadow-[3px_3px_0_var(--ink)] mb-1 md:mb-0"
               style={{ background: phase.color }}
             >
-              <span className="text-[14px] tracking-wider">PHASE</span>
-              <span className="text-[34px]">0{item.phase}</span>
+              <span className="text-[11px] sm:text-[14px] tracking-wider">PHASE</span>
+              <span className="text-[24px] sm:text-[34px]">0{item.phase}</span>
             </div>
             <div className="text-center mx-auto">
-              <h1 className="font-bangers text-[clamp(40px,7vw,82px)] tracking-widest text-[var(--ink)] m-0 leading-none [text-shadow:2.5px_2.5px_0_var(--yellow)]">
+              <h1 className="font-bangers text-[clamp(28px,7vw,82px)] tracking-widest text-[var(--ink)] m-0 leading-none [text-shadow:2px_2px_0_var(--yellow)] sm:[text-shadow:2.5px_2.5px_0_var(--yellow)]">
                 THE MULTIVERSE HERALD
               </h1>
               <div
-                className="font-oswald text-[12px] tracking-[4px] uppercase mt-1.5 font-semibold"
+                className="font-oswald text-[10px] sm:text-[12px] tracking-[2px] sm:tracking-[4px] uppercase mt-1 sm:mt-1.5 font-semibold"
                 style={{ color: phase.dark }}
               >
                 Sacred Timeline Dispatch · Est. Phase One
@@ -104,9 +114,9 @@ export function ArticlePage({ onOpen }) {
         </div>
 
         {/* KICKER & HEADLINE - CENTERED */}
-        <div className="flex items-center justify-center gap-3.5 flex-wrap my-6 mb-3.5">
+        <div className="flex items-center justify-center gap-2 sm:gap-3.5 flex-wrap my-4 sm:my-6 mb-3.5 text-center">
           <span
-            className="inline-block font-oswald font-bold text-[12px] tracking-widest uppercase text-[var(--paper)] py-1.25 px-3.5 -skew-x-[8deg]"
+            className="inline-block font-oswald font-bold text-[11px] sm:text-[12px] tracking-widest uppercase text-[var(--paper)] py-1 px-2.5 sm:py-1.25 sm:px-3.5 -skew-x-[8deg]"
             style={{ background: phase.color }}
           >
             <span className="inline-block skew-x-[8deg]">
@@ -114,18 +124,18 @@ export function ArticlePage({ onOpen }) {
             </span>
           </span>
           <span
-            className="font-oswald font-semibold text-[12px] tracking-widest uppercase border-l-[3px] border-[var(--ink)] pl-3"
+            className="font-oswald font-semibold text-[11px] sm:text-[12px] tracking-widest uppercase border-l-[2px] sm:border-l-[3px] border-[var(--ink)] pl-2.5 sm:pl-3"
             style={{ color: phase.dark }}
           >
             {item.date} Edition
           </span>
         </div>
 
-        <h1 className="font-bangers text-[clamp(34px,5.5vw,62px)] leading-tight tracking-wide my-0 mb-4 text-[var(--ink)] text-center">
-          {item.title.toUpperCase()}: <span className="text-[var(--paper)] bg-[var(--ink)] px-2.5">{item.blurb.toUpperCase()}</span>
+        <h1 className="font-bangers text-[clamp(24px,5.5vw,62px)] leading-tight tracking-wide my-0 mb-4 text-[var(--ink)] text-center px-1">
+          {item.title.toUpperCase()}: <span className="text-[var(--paper)] bg-[var(--ink)] px-2 sm:px-2.5">{item.blurb.toUpperCase()}</span>
         </h1>
 
-        <div className="font-oswald text-[13px] tracking-widest uppercase text-[#4a3b2c] border-y-2 border-[var(--ink)] py-2 mb-8 flex items-center justify-center flex-wrap gap-x-4.5 gap-y-1.5">
+        <div className="font-oswald text-[11px] sm:text-[13px] tracking-widest uppercase text-[#4a3b2c] border-y-2 border-[var(--ink)] py-1.5 sm:py-2 mb-6 sm:mb-8 flex items-center justify-center flex-wrap gap-x-2.5 sm:gap-x-4.5 gap-y-1">
           <span>By <b style={{ color: phase.color }}>The Herald Fan Desk</b></span>
           <span>·</span>
           <span>5 min read</span>
@@ -134,9 +144,9 @@ export function ArticlePage({ onOpen }) {
         </div>
 
         {/* HERO ROW */}
-        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6.5 mb-7.5">
-          <div>
-            <div className="relative border-4 border-[var(--ink)] shadow-[7px_7px_0_var(--ink)] -rotate-[2deg] bg-[var(--ink)] overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5 md:gap-6.5 mb-6 sm:mb-7.5">
+          <div className="max-w-[280px] w-full mx-auto md:max-w-none">
+            <div className="relative border-3 sm:border-4 border-[var(--ink)] shadow-[5px_5px_0_var(--ink)] sm:shadow-[7px_7px_0_var(--ink)] -rotate-[2deg] bg-[var(--ink)] overflow-hidden">
               <div
                 className="aspect-[3/4] w-full relative overflow-hidden"
                 style={{ background: `linear-gradient(135deg, ${phase.color}, ${phase.dark})` }}
@@ -153,14 +163,14 @@ export function ArticlePage({ onOpen }) {
                   </div>
                 )}
               </div>
-              <div className="bg-[var(--yellow)] border-t-4 border-[var(--ink)] font-oswald font-semibold text-[11px] tracking-widest uppercase text-center text-[var(--ink)] py-1.75 px-1.5">
+              <div className="bg-[var(--yellow)] border-t-3 sm:border-t-4 border-[var(--ink)] font-oswald font-semibold text-[10px] sm:text-[11px] tracking-widest uppercase text-center text-[var(--ink)] py-1.5 px-1">
                 FIG. 1 — OFFICIAL {item.type.toUpperCase()} CHRONICLE
               </div>
             </div>
           </div>
 
           {/* Lead Story */}
-          <div className="font-fredoka text-[17px] leading-relaxed text-black">
+          <div className="font-fredoka text-[15px] sm:text-[17px] leading-relaxed text-black">
             <p className="mcv-dropcap mb-3.5">
               {item.blurb} As part of Marvel Cinematic Universe's {phase.name} ({phase.years}), {item.title} stands as a pivotal milestone in the sacred continuity.
             </p>
@@ -173,9 +183,9 @@ export function ArticlePage({ onOpen }) {
         </div>
 
         {/* ARTICLE BODY */}
-        <article className="font-fredoka text-[16.5px] leading-relaxed text-black mt-6">
+        <article className="font-fredoka text-[15px] sm:text-[16.5px] leading-relaxed text-black mt-4 sm:mt-6">
           <h2
-            className="font-bangers text-[28px] tracking-wide my-0 mt-8 mb-2.5"
+            className="font-bangers text-[22px] sm:text-[28px] tracking-wide my-0 mt-6 sm:mt-8 mb-2 sm:mb-2.5"
             style={{ color: phase.dark }}
           >
             THE NEXUS IMPACT
@@ -186,17 +196,17 @@ export function ArticlePage({ onOpen }) {
 
           {/* BURST QUOTE CALLOUT */}
           <blockquote
-            className="relative my-7.5 py-5.5 px-6 text-[var(--paper)] border-[3px] border-[var(--ink)] shadow-[6px_6px_0_var(--ink)] rotate-[1deg] font-oswald font-semibold text-[19px] tracking-wide"
+            className="relative my-6 sm:my-7.5 py-4 px-4 sm:py-5.5 sm:px-6 text-[var(--paper)] border-[3px] border-[var(--ink)] shadow-[4px_4px_0_var(--ink)] sm:shadow-[6px_6px_0_var(--ink)] rotate-0 sm:rotate-[1deg] font-oswald font-semibold text-[16px] sm:text-[19px] tracking-wide"
             style={{ background: phase.color }}
           >
-            <div className="absolute -top-4 -left-4 w-9 h-9 bg-[var(--yellow)] border-[3px] border-[var(--ink)] rounded-full flex items-center justify-center text-[var(--ink)] text-[16px] -rotate-[15deg]">
+            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-7 h-7 sm:w-9 sm:h-9 bg-[var(--yellow)] border-[2.5px] sm:border-[3px] border-[var(--ink)] rounded-full flex items-center justify-center text-[var(--ink)] text-[13px] sm:text-[16px] -rotate-[15deg]">
               ★
             </div>
             "{item.blurb}" — ARCHIVAL RECORD #{item.id}
           </blockquote>
 
           <h2
-            className="font-bangers text-[28px] tracking-wide my-0 mt-8 mb-2.5"
+            className="font-bangers text-[22px] sm:text-[28px] tracking-wide my-0 mt-6 sm:mt-8 mb-2 sm:mb-2.5"
             style={{ color: phase.dark }}
           >
             TIMELINE CONTINUITY NOTES
@@ -210,7 +220,7 @@ export function ArticlePage({ onOpen }) {
         <div className="my-6 mb-7.5 flex justify-start">
           <button
             onClick={handleBack}
-            className="mcv-btn inline-flex items-center gap-1.5 text-[15px] text-[var(--paper)] -rotate-[2deg]"
+            className="mcv-btn inline-flex items-center gap-1.5 text-[14px] sm:text-[15px] text-[var(--paper)] -rotate-[2deg]"
             style={{ background: phase.color }}
           >
             RETURN TO TIMELINE CHRONICLE ➔

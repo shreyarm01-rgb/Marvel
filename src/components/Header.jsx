@@ -255,14 +255,14 @@ export function Header({ onOpen }) {
 
   return (
     <header className="bg-[var(--ink)] border-b-[4px] border-[var(--ink)] sticky top-0 z-50 w-full">
-      <div className="w-full max-w-full px-8 py-3 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-6">
+      <div className="w-full max-w-full px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 sm:gap-6">
           <button
             onClick={() => { navigate("/"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             aria-label="Go to home page"
-            className="bg-[var(--red)] border-[3px] border-[var(--paper)] px-4 py-1 -skew-x-[8deg] cursor-pointer shadow-[3px_3px_0_var(--paper)] transition-transform duration-200 hover:scale-105"
+            className="bg-[var(--red)] border-[3px] border-[var(--paper)] px-3 py-1 sm:px-4 sm:py-1 -skew-x-[8deg] cursor-pointer shadow-[3px_3px_0_var(--paper)] transition-transform duration-200 hover:scale-105"
           >
-            <span className="font-bangers inline-block skew-x-[8deg] text-[var(--paper)] text-[29px] italic">
+            <span className="font-bangers inline-block skew-x-[8deg] text-[var(--paper)] text-[22px] sm:text-[29px] italic leading-none">
               MARVEL
             </span>
           </button>
@@ -297,7 +297,7 @@ export function Header({ onOpen }) {
         </div>
 
         <button
-          className="flex md:hidden bg-transparent border-none text-[var(--paper)] cursor-pointer p-1"
+          className="flex md:hidden bg-transparent border-none text-[var(--paper)] cursor-pointer p-1.5 hover:text-[var(--yellow)] transition-colors"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
         >
@@ -306,19 +306,21 @@ export function Header({ onOpen }) {
       </div>
 
       {open && (
-        <div className="block md:hidden px-6 pt-2 pb-4 border-t border-[rgba(235,224,196,0.2)]">
+        <div className="block md:hidden px-4 sm:px-6 pt-2.5 pb-5 border-t border-[rgba(235,224,196,0.2)] max-h-[82vh] overflow-y-auto">
           <div className="mb-3">
             <NavSearch onOpen={onOpen} closeMobileMenu={() => setOpen(false)} />
           </div>
-          <div className="flex flex-wrap gap-2.5 mb-1.5">
+          <div className="flex flex-wrap gap-2.5 mb-2">
             <button
-              className="mcv-navlink"
+              className="mcv-navlink text-[17px] py-1 px-2"
               onClick={() => { navigate("/"); setOpen(false); }}
             >
               HOME
             </button>
           </div>
-          <p className="font-bangers text-[var(--yellow)] text-[15px] my-1.5">BLOG</p>
+          <p className="font-bangers text-[var(--yellow)] text-[16px] my-2 border-t border-[rgba(235,224,196,0.15)] pt-2">
+            BLOG & CHRONICLES
+          </p>
           <BlogMegaMenu onOpen={onOpen} closeMenu={() => setOpen(false)} variant="mobile" />
         </div>
       )}

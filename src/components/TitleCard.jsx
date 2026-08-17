@@ -51,7 +51,7 @@ export function TitleCard({ item, onOpen, isGrid = false }) {
           )}
         </div>
       </div>
-      <div className="p-4 relative w-full flex-1 flex flex-col justify-between">
+      <div className="p-4 relative w-full h-[187px] min-h-[187px] max-h-[187px] flex-none flex flex-col justify-between" style={{ height: "187px" }}>
         <div>
           <p
             className="font-bangers text-[19px] leading-tight mb-2 m-0"

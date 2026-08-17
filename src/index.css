@@ -23,10 +23,11 @@
   --purple: #6B2FA0;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: var(--ink);
 }
 
 #root {

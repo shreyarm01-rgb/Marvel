@@ -185,7 +185,7 @@ html, body {
 
 .mcv-hero-row {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 26px;
   margin-bottom: 30px;
 }

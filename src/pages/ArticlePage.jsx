@@ -74,6 +74,13 @@ export function ArticlePage({ onOpen }) {
   const itemId = parseInt(id, 10);
   const item = T.find((t) => t.id === itemId) || T[0];
   const phase = PHASES.find((p) => p.id === item.phase) || PHASES[0];
+  const isDoctorStrange =
+    item.id === 15 ||
+    item.id === 35 ||
+    item.title === "Doctor Strange" ||
+    item.image?.includes("Dr Strange") ||
+    item.title?.toLowerCase().includes("strange") ||
+    item.image?.toLowerCase().includes("strange");
 
   const handleBack = () => {
     navigate("/");
@@ -144,18 +151,18 @@ export function ArticlePage({ onOpen }) {
         </div>
 
         {/* HERO ROW */}
-        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5 md:gap-6.5 mb-6 sm:mb-7.5">
-          <div className="max-w-[280px] w-full mx-auto md:max-w-none">
+        <div className="grid grid-cols-1 md:grid-cols-[275px_1fr] gap-5 md:gap-6.5 mb-6 sm:mb-7.5 items-start">
+          <div className="w-[275px] max-w-full mx-auto md:max-w-none">
             <div className="relative border-3 sm:border-4 border-[var(--ink)] shadow-[5px_5px_0_var(--ink)] sm:shadow-[7px_7px_0_var(--ink)] -rotate-[2deg] bg-[var(--ink)] overflow-hidden">
               <div
-                className="aspect-[3/4] w-full relative overflow-hidden"
+                className="w-full aspect-[2/3] relative overflow-hidden bg-[var(--ink)]"
                 style={{ background: `linear-gradient(135deg, ${phase.color}, ${phase.dark})` }}
               >
                 {item.image ? (
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover object-top block z-10"
+                    className="absolute inset-0 w-full h-full object-cover object-top block z-10 transform-gpu scale-[1.08]"
                   />
                 ) : (
                   <div className="font-bangers absolute inset-0 flex items-center justify-center text-[var(--yellow)] text-[22px] p-5 text-center">

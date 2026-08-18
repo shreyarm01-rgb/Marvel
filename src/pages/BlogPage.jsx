@@ -46,7 +46,7 @@ export function BlogPage({ onOpen }) {
             <span className="font-kalam text-[14px] sm:text-[16px] font-bold">{phase.tag}</span>
           </div>
 
-          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3.5 sm:gap-4.5 lg:gap-5.5 w-full">
+          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-3.5 sm:gap-4.5 lg:gap-5.5 w-full">
             {T.filter((t) => t.phase === phase.id).map((item) => (
               <TitleCard item={item} onOpen={onOpen} key={item.id} isGrid={true} />
             ))}

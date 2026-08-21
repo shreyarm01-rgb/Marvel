@@ -59,8 +59,8 @@ function NavSearch({ onOpen, closeMobileMenu }) {
           }}
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
-          placeholder="Search Marvel titles..."
-          className="w-full bg-[var(--paper)] text-[var(--ink)] placeholder-[rgba(24,19,14,0.55)] font-comic text-[14px] font-bold pl-8 pr-7 py-1.5 border-[2px] border-[var(--paper)] focus:outline-none focus:border-[var(--yellow)] transition-all"
+          placeholder="Search movies and titles..."
+          className="w-full bg-[var(--paper)] text-[var(--ink)] placeholder-[rgba(24,19,14,0.55)] font-fredoka text-[14px] font-normal italic pl-8 pr-7 py-1.5 border-[2px] border-[var(--paper)] focus:outline-none focus:border-[var(--yellow)] transition-all"
         />
         {query && (
           <button
@@ -82,7 +82,7 @@ function NavSearch({ onOpen, closeMobileMenu }) {
             <span className="font-bangers text-[13px] text-[var(--red)] tracking-wider">
               SEARCH RESULTS ({filtered.length})
             </span>
-            <span className="text-[11px] font-comic opacity-60">ESC to close</span>
+            <span className="text-[11px] font-fredoka opacity-60">ESC to close</span>
           </div>
 
           {filtered.length > 0 ? (
@@ -111,7 +111,7 @@ function NavSearch({ onOpen, closeMobileMenu }) {
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
-                        <p className="font-comic font-bold text-[14px] text-[var(--ink)] truncate m-0 leading-tight">
+                        <p className="font-fredoka font-medium text-[14px] text-[var(--ink)] truncate m-0 leading-tight">
                           {item.title}
                         </p>
                         <span
@@ -121,7 +121,7 @@ function NavSearch({ onOpen, closeMobileMenu }) {
                           {TYPE_LABEL[item.type] || item.type}
                         </span>
                       </div>
-                      <p className="font-kalam text-[12px] text-[rgba(24,19,14,0.7)] truncate m-0 mt-0.5">
+                      <p className="font-fredoka text-[12px] italic text-[rgba(24,19,14,0.7)] truncate m-0 mt-0.5">
                         {item.blurb}
                       </p>
                       <div className="flex items-center gap-2 mt-0.5 text-[11px] font-bold opacity-60">
@@ -137,7 +137,7 @@ function NavSearch({ onOpen, closeMobileMenu }) {
           ) : (
             <div className="p-4 text-center">
               <p className="font-bangers text-[16px] text-[var(--ink)] m-0">NO HEROES OR SAGAS FOUND</p>
-              <p className="font-kalam text-[13px] opacity-70 m-0 mt-1">
+              <p className="font-fredoka text-[13px] italic opacity-70 m-0 mt-1">
                 Try searching for "Iron Man", "Loki", "Avengers", or "Phase 3"
               </p>
             </div>
@@ -217,11 +217,11 @@ function BlogMegaMenu({ onOpen, variant = "desktop", closeMenu }) {
                 <button
                   key={it.id}
                   onClick={() => handleOpenItem(it)}
-                  className={`mcv-mega-item flex items-center justify-between gap-2 w-full text-left bg-transparent border-none py-2 px-4 cursor-pointer font-comic ${
+                  className={`mcv-mega-item flex items-center justify-between gap-2 w-full text-left bg-transparent border-none py-2 px-4 cursor-pointer font-fredoka ${
                     isDesktop ? "border-b border-dashed border-[rgba(24,19,14,0.2)] text-[var(--ink)] opacity-100 hover:bg-[rgba(24,19,14,0.06)]" : "border-none text-[var(--paper)] opacity-85"
                   }`}
                 >
-                  <span className="text-[16px] font-bold italic">
+                  <span className="text-[16px] font-medium italic">
                     {it.title}{it.isLoki ? (it.id === 26 ? " (S1)" : " (S2)") : ""}
                   </span>
                   {isDesktop && (

@@ -3,7 +3,7 @@ import React from "react";
 export function GlobalStyle() {
   return (
     <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Fredoka:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Kalam:wght@400;700&family=Oswald:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Fredoka:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Oswald:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
       .mcv-hero-row {
         display: grid;
@@ -43,7 +43,7 @@ export function GlobalStyle() {
         --blue: #1E4A8C;
         --yellow: #E8B62F;
         --purple: #6B2FA0;
-        font-family: 'Comic Neue', sans-serif;
+        font-family: 'Fredoka', sans-serif;
         color: var(--ink);
         background: var(--paper);
         background-image:
@@ -57,7 +57,7 @@ export function GlobalStyle() {
       .mcv-root * { box-sizing: border-box; }
       .mcv-display { font-family: 'Bangers', cursive !important; letter-spacing: 0.03em; }
       .mcv-hand {
-        font-family: 'Kalam', cursive !important;
+        font-family: 'Fredoka', sans-serif !important;
         font-size: clamp(32px, 5vw, 56px);
         font-weight: 700;
         line-height: 1.1;

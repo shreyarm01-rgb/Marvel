@@ -20,7 +20,7 @@ function Hero({ goPhase }) {
           <h1 className="font-bangers text-[clamp(28px,7.5vw,96px)] text-[var(--paper)] leading-none m-0 [text-shadow:4px_4px_0_var(--ink)] sm:[text-shadow:6px_6px_0_var(--ink)] [-webkit-text-stroke:1.5px_var(--ink)] sm:[-webkit-text-stroke:3px_var(--ink)]">
             MARVEL CINEMATIC UNIVERSE
           </h1>
-          <p className="font-kalam text-[var(--ink)] text-[16px] sm:text-[22px] mt-2 sm:mt-3">
+          <p className="font-fredoka text-[var(--ink)] text-[16px] sm:text-[22px] font-medium italic mt-2 sm:mt-3">
             An Unofficial Fan Chronicle
           </p>
         </div>
@@ -100,7 +100,7 @@ function PhaseRow({ phase, items, onOpen, sectionRef, isFirst }) {
             </p>
           </div>
           <div>
-            <p className="font-kalam m-0 text-[17px] sm:text-[22px] font-bold leading-tight">{phase.tag}</p>
+            <p className="font-fredoka m-0 text-[17px] sm:text-[22px] font-medium italic leading-tight">{phase.tag}</p>
             <p className="m-0 text-[11px] sm:text-[13px] font-bold opacity-70 leading-tight">{phase.years}</p>
           </div>
         </div>

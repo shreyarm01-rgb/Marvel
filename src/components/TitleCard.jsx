@@ -67,7 +67,7 @@ export function TitleCard({ item, onOpen, isGrid = false }) {
             {item.title}
           </p>
           <p
-            className="font-kalam text-[13.5px] sm:text-[14.5px] font-bold leading-snug mb-1.5 m-0 line-clamp-2"
+            className="font-fredoka text-[13.5px] sm:text-[14.5px] font-medium italic leading-snug mb-1.5 m-0 line-clamp-2"
             style={{ color: phase.dark }}
           >
             {item.blurb}
